@@ -19,6 +19,9 @@ public class Post {
 
     private String content;
 
+    private double latitude;
+    private double longitude;
+
     @Column(nullable = false)
     private Boolean isLocation = false;
 
@@ -55,11 +58,29 @@ public class Post {
         this.content = content;
     }
 
-    public Post(Users user, String title, String content, Boolean isLocation) {
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Post(Users user, String title, String content, Boolean isLocation, double latitude, double longitude) {
         this.user = user;
         this.title = title;
         this.content = content;
         this.isLocation = isLocation;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Post(Users user, String title, String content) {

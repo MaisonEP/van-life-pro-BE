@@ -13,6 +13,9 @@ public class CreatePostRequest {
 
     private String content;
 
+    private double latitude;
+    private double longitude;
+
     private Optional<Boolean> isLocation;
 
 
@@ -48,10 +51,28 @@ public class CreatePostRequest {
         this.isLocation = isLocation;
     }
 
-    public CreatePostRequest(UUID userId, String title, String content, Optional<Boolean> isLocation) {
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public CreatePostRequest(UUID userId, String title, String content, Optional<Boolean> isLocation, double latitude, double longitude) {
         this.userId = userId;
         this.title = title;
         this.content = content;
         this.isLocation = isLocation;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }

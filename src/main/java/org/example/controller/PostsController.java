@@ -13,8 +13,8 @@ import java.util.List;
 @RequestMapping("/posts")
 public class PostsController {
 
-    private UserAccountRepository userAccountRepository;
-    private PostsRepository postsRepository;
+    private final UserAccountRepository userAccountRepository;
+    private final PostsRepository postsRepository;
 
     public  PostsController(UserAccountRepository userAccountRepository, PostsRepository postsRepository){
         this.userAccountRepository = userAccountRepository;
@@ -27,7 +27,7 @@ public class PostsController {
         Users user = userAccountRepository.getReferenceById(createPostRequest.getUserId());
         Post post;
         if( createPostRequest.getIsLocation().isPresent() ){
-            post = new Post(user, createPostRequest.getTitle(), createPostRequest.getContent(), createPostRequest.getIsLocation().get());
+            post = new Post(user, createPostRequest.getTitle(), createPostRequest.getContent(), createPostRequest.getIsLocation().get(), createPostRequest.getLatitude(), createPostRequest.getLongitude());
         } else {
             post = new Post(user, createPostRequest.getTitle(), createPostRequest.getContent());
         }
