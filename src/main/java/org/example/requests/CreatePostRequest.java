@@ -18,6 +18,7 @@ public class CreatePostRequest {
     private Optional<Boolean> isLocation;
 
     private String file;
+    private String file2;
 
 
     public UUID getUserId() {
@@ -76,7 +77,15 @@ public class CreatePostRequest {
         this.file = file;
     }
 
-    public CreatePostRequest(UUID userId, String title, String content, Optional<Boolean> isLocation, double latitude, double longitude, String file) {
+    public String getFile2() {
+        return file2;
+    }
+
+    public void setFile2(String file2) {
+        this.file2 = file2;
+    }
+
+    public CreatePostRequest(UUID userId, String title, String content, Optional<Boolean> isLocation, double latitude, double longitude, String file,  String file2) {
         this.userId = userId;
         this.title = title;
         this.content = content;
@@ -84,5 +93,6 @@ public class CreatePostRequest {
         this.latitude = latitude;
         this.longitude = longitude;
         this.file = file;
+        this.file2 = file2;
     }
 }

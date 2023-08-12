@@ -1,8 +1,8 @@
 package org.example.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.primitives.Bytes;
 import org.example.DBModel.posts.Post;
 import org.example.DBModel.posts.PostsRepository;
 import org.example.DBModel.users.UserAccountRepository;
@@ -12,7 +12,6 @@ import org.example.response.PostResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/posts")
@@ -35,10 +34,8 @@ public class PostsController {
         Users user = userAccountRepository.getReferenceById(createPostRequest.getUserId());
         byte[] image = null;
         if (createPostRequest.getFile() != null) {
-            Map<String, Object> map = objectMapper.readValue(createPostRequest.getFile(), new TypeReference<Map<String, Object>>() {
-            });
-        String fileInBase64 = map.get("base64").toString();
-        image = fileInBase64.getBytes();
+
+        image = Bytes.concat(createPostRequest.getFile().getBytes(), createPostRequest.getFile2().getBytes());
         }
         Post post;
         if( createPostRequest.getIsLocation().isPresent() ){
