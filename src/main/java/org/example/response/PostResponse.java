@@ -1,20 +1,11 @@
-package org.example.DBModel.posts;
+package org.example.response;
 
-import jakarta.persistence.*;
 import org.example.DBModel.users.Users;
 
 import java.util.UUID;
 
-@Entity
-@Table(name = "posts")
-public class Post {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+public class PostResponse {
     private java.util.UUID postId;
-
-    @ManyToOne
-    @JoinColumn(name = "userId")
     private Users user;
 
     private String title;
@@ -24,20 +15,17 @@ public class Post {
     private double latitude;
     private double longitude;
 
-    @Lob
-    private byte[] image;
+    private String image;
 
-    @Column(nullable = false)
     private Boolean isLocation = false;
 
-    public Boolean getLocation() {
-        return isLocation;
+    public UUID getPostId() {
+        return postId;
     }
 
-    public void setLocation(Boolean location) {
-        isLocation = location;
+    public void setPostId(UUID postId) {
+        this.postId = postId;
     }
-
 
     public Users getUser() {
         return user;
@@ -79,36 +67,30 @@ public class Post {
         this.longitude = longitude;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-
-    public UUID getPostId() {
-        return postId;
+    public Boolean getLocation() {
+        return isLocation;
     }
 
-    public Post(Users user, String title, String content, Boolean isLocation, double latitude, double longitude, byte[] image) {
+    public void setLocation(Boolean location) {
+        isLocation = location;
+    }
+
+    public PostResponse(UUID postId, Users user, String title, String content, double latitude, double longitude, String image, Boolean isLocation) {
+        this.postId = postId;
         this.user = user;
         this.title = title;
         this.content = content;
-        this.isLocation = isLocation;
         this.latitude = latitude;
         this.longitude = longitude;
         this.image = image;
-    }
-
-    public Post(Users user, String title, String content) {
-        this.user = user;
-        this.title = title;
-        this.content = content;
-    }
-
-    public Post(){
-
+        this.isLocation = isLocation;
     }
 }

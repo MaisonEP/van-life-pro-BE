@@ -1,6 +1,5 @@
 package org.example.requests;
 
-
 import java.util.Optional;
 import java.util.UUID;
 
@@ -17,6 +16,8 @@ public class CreatePostRequest {
     private double longitude;
 
     private Optional<Boolean> isLocation;
+
+    private String file;
 
 
     public UUID getUserId() {
@@ -67,12 +68,21 @@ public class CreatePostRequest {
         this.longitude = longitude;
     }
 
-    public CreatePostRequest(UUID userId, String title, String content, Optional<Boolean> isLocation, double latitude, double longitude) {
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    public CreatePostRequest(UUID userId, String title, String content, Optional<Boolean> isLocation, double latitude, double longitude, String file) {
         this.userId = userId;
         this.title = title;
         this.content = content;
         this.isLocation = isLocation;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.file = file;
     }
 }
