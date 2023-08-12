@@ -1,12 +1,10 @@
 package org.example.response;
 
-import org.example.DBModel.users.Users;
-
 import java.util.UUID;
 
 public class PostResponse {
     private java.util.UUID postId;
-    private Users user;
+    private UUID userId;
 
     private String title;
 
@@ -27,12 +25,12 @@ public class PostResponse {
         this.postId = postId;
     }
 
-    public Users getUser() {
-        return user;
+    public UUID getUser() {
+        return userId;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUser(UUID user) {
+        this.userId = user;
     }
 
     public String getTitle() {
@@ -83,9 +81,9 @@ public class PostResponse {
         isLocation = location;
     }
 
-    public PostResponse(UUID postId, Users user, String title, String content, double latitude, double longitude, String image, Boolean isLocation) {
+    public PostResponse(UUID postId, UUID user, String title, String content, double latitude, double longitude, String image, Boolean isLocation) {
         this.postId = postId;
-        this.user = user;
+        this.userId = user;
         this.title = title;
         this.content = content;
         this.latitude = latitude;
