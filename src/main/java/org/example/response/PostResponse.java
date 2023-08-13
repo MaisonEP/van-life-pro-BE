@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class PostResponse {
     private java.util.UUID postId;
-    private UUID userId;
+    private UserLoginResponse user;
 
     private String title;
 
@@ -25,12 +25,12 @@ public class PostResponse {
         this.postId = postId;
     }
 
-    public UUID getUser() {
-        return userId;
+    public UserLoginResponse getUser() {
+        return user;
     }
 
-    public void setUser(UUID user) {
-        this.userId = user;
+    public void setUser(UserLoginResponse user) {
+        this.user = user;
     }
 
     public String getTitle() {
@@ -81,9 +81,9 @@ public class PostResponse {
         isLocation = location;
     }
 
-    public PostResponse(UUID postId, UUID user, String title, String content, double latitude, double longitude, String image, Boolean isLocation) {
+    public PostResponse(UUID postId, UserLoginResponse user, String title, String content, double latitude, double longitude, String image, Boolean isLocation) {
         this.postId = postId;
-        this.userId = user;
+        this.user = user;
         this.title = title;
         this.content = content;
         this.latitude = latitude;

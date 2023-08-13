@@ -9,6 +9,7 @@ import org.example.DBModel.users.UserAccountRepository;
 import org.example.DBModel.users.Users;
 import org.example.requests.CreatePostRequest;
 import org.example.response.PostResponse;
+import org.example.response.UserLoginResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,7 +56,7 @@ public class PostsController {
 
         return all.stream().map(post -> new PostResponse(
                 post.getPostId(),
-                post.getUser().getId(),
+               new UserLoginResponse(post.getUser().getId(), post.getUser().getUsername(),  post.getUser().getImage() != null ? new String(post.getUser().getImage()): null, post.getUser().getBio()),
                 post.getTitle(),
                 post.getContent(),
                 post.getLatitude(),

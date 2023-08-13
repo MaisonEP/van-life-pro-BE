@@ -48,6 +48,7 @@ public class AccountController {
         return new UserLoginResponse(user.getId(), user.getUsername(), image, user.getBio());
     }
 
+    @Transactional
     @PostMapping("/accountdetails/verifieduser")
     public UserLoginResponse verifyUser(@RequestBody UserAccountRequest userAccountRequest) throws  Exception {
         // create function to check if user credentials exist already in database
