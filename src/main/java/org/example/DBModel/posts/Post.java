@@ -23,7 +23,6 @@ public class Post {
 
     private double latitude;
     private double longitude;
-
     @Lob
     private byte[] image;
 

@@ -42,7 +42,7 @@ public class AccountService {
             String username = registerRequest.getUserName();
             String userPassword = registerRequest.getPassword();
             String hashedPassword = getHashedPassword(userPassword);
-            Users vanLifeUser = new Users(username,hashedPassword);
+            Users vanLifeUser = new Users(username,hashedPassword, null, null);
 
             userAccountRepository.save(vanLifeUser);
         } catch (Error e) {

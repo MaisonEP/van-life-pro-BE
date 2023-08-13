@@ -55,7 +55,7 @@ public class PostsController {
 
         return all.stream().map(post -> new PostResponse(
                 post.getPostId(),
-                post.getUser(),
+                post.getUser().getId(),
                 post.getTitle(),
                 post.getContent(),
                 post.getLatitude(),
