@@ -30,8 +30,9 @@ public class AccountController {
 
 
     @PostMapping("/accountdetails/register")
-    public void registerUser(@RequestBody UserAccountRequest userAccountRequest){
-      accountService.register(userAccountRequest);
+    public UUID registerUser(@RequestBody UserAccountRequest userAccountRequest){
+        Users user =  accountService.register(userAccountRequest);
+        return user.getId();
     }
 
     @GetMapping("/accountdetails/allusers")
