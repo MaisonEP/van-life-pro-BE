@@ -37,7 +37,7 @@ public class AccountController {
     @GetMapping("/accountdetails/allusers")
     public List<UserLoginResponse>getAllUser(){
        List<Users> userCredentials = userAccountRepository.findAll();
-     return  userCredentials.stream().map(user ->  new UserLoginResponse(user.getId(), user.getUsername(), new String(user.getImage()), user.getBio())).toList();
+     return  userCredentials.stream().map(user ->  new UserLoginResponse(user.getId(), user.getUsername(),user.getImage() != null? new String(user.getImage()): null, user.getBio())).toList();
     }
 
     @GetMapping("/accountdetails/allusers/{userId}")
