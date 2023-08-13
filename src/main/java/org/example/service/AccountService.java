@@ -37,7 +37,7 @@ public class AccountService {
         }
     }
 
-    public void register(UserAccountRequest registerRequest){
+    public Users register(UserAccountRequest registerRequest){
         try {
             String username = registerRequest.getUserName();
             String userPassword = registerRequest.getPassword();
@@ -45,6 +45,7 @@ public class AccountService {
             Users vanLifeUser = new Users(username,hashedPassword, null, null);
 
             userAccountRepository.save(vanLifeUser);
+            return vanLifeUser;
         } catch (Error e) {
             System.out.println("There was an error saving registering the User");
             throw new RuntimeException(e);

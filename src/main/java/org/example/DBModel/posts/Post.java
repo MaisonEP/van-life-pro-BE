@@ -1,8 +1,10 @@
 package org.example.DBModel.posts;
 
 import jakarta.persistence.*;
+import org.example.DBModel.comments.Comment;
 import org.example.DBModel.users.Users;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -11,11 +13,14 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private java.util.UUID postId;
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "userId")
     private Users user;
+
+    @OneToMany(mappedBy = "post")
+    private Set<Comment> comments;
 
     private String title;
 
@@ -24,6 +29,7 @@ public class Post {
     private double latitude;
     private double longitude;
     @Lob
+    @Basic(fetch=FetchType.LAZY)
     private byte[] image;
 
     @Column(nullable = false)
@@ -87,8 +93,8 @@ public class Post {
     }
 
 
-    public UUID getPostId() {
-        return postId;
+    public UUID getId() {
+        return id;
     }
 
     public Post(Users user, String title, String content, Boolean isLocation, double latitude, double longitude, byte[] image) {
