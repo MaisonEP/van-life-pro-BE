@@ -77,7 +77,7 @@ public class PostsController {
     @PostMapping("/comment")
     @Transactional
     public void addComment(@RequestBody CommentRequest commentRequest) {
-        Comment comment = new Comment(commentRequest.getComment(), commentRequest.getPostId());
+        Comment comment = new Comment(commentRequest.getComment(), commentRequest.getPostId(), commentRequest.getUserId());
 
         commentsRepository.save(comment);
         System.out.println("hello");
@@ -92,7 +92,7 @@ public class PostsController {
         for (int i = 0; i<allByPostId.size(); i++ ){
             Comment comment = allByPostId.get(i);
             UUID post = comment.getPost().getId();
-            String username = comment.getPost().getUser().getUsername();
+            String username = comment.getUser().getUsername();
 
             CommentResponse myCommentResponse = new CommentResponse(comment.getId(), comment.getComment(), post, username, comment.getDateCreated());
             postComments.add(myCommentResponse);
