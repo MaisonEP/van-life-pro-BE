@@ -2,6 +2,7 @@ package org.example.DBModel.comments;
 
 import jakarta.persistence.*;
 import org.example.DBModel.posts.Post;
+import org.example.DBModel.users.Users;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
@@ -22,6 +23,13 @@ public class Comment {
 
     @Column(name = "post_id")
     private UUID postId;
+
+    @ManyToOne(targetEntity = Users.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id",  insertable = false, updatable = false)
+    private Users user;
+
+    @Column(name = "user_id")
+    private UUID userId;
 
     @CreationTimestamp
     private Instant dateCreated;
@@ -67,9 +75,26 @@ public class Comment {
         this.postId = postId;
     }
 
-    public Comment(String comment, UUID postId) {
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public Comment(String comment, UUID postId, UUID userId) {
         this.comment = comment;
         this.postId = postId;
+        this.userId = userId;
     }
 
 
